@@ -1,5 +1,5 @@
 import "./styles.css";
-import React from "react";
+import React, { useState } from "react";
 import { IEmployeeItem } from "./EmployeeItem";
 import EmployeeItem from "./EmployeeItem";
 
@@ -21,6 +21,7 @@ const App: React.FC<IApp> = () => {
   ];
 
   // use state for submit button
+  const [inpitValue, submitInputValue] = useState<string>();
 
   return (
     <div className="App">
@@ -29,7 +30,26 @@ const App: React.FC<IApp> = () => {
 
       {/* // show form with 3 empty lines and a button
     // use onChange */}
-      <div></div>
+      <div>
+        <form>
+          <label>First name:</label>
+          <input type="text" value={th} onChange={}></input>
+          <br />
+          <label>Lirst name:</label>
+          <input></input>
+          <br />
+          <label>Role:</label>
+          <input></input>
+          <br />
+        </form>
+        <button
+          onClick={(event) => {
+            submitInputValue(event.target.value);
+          }}
+        >
+          Submit
+        </button>
+      </div>
       {/* // Map data to show list on a screen */}
       {employees.map((employee) => {
         return <EmployeeItem {...employee} />;
