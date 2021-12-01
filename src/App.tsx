@@ -7,54 +7,90 @@ interface IApp {}
 
 const App: React.FC<IApp> = () => {
   // set empty array
-  const employees: IEmployeeItem[] = [
-    {
-      firstName: "Ali",
-      lastName: "Schick",
-      role: "Developer"
-    },
-    {
-      firstName: "John",
-      lastName: "Doe",
-      role: "Manager"
-    }
-  ];
+  // const employees: IEmployeeItem[] = [
+  //   {
+  //     firstName: "Ali",
+  //     lastName: "Schick",
+  //     role: "Developer"
+  //   },
+  //   {
+  //     firstName: "John",
+  //     lastName: "Doe",
+  //     role: "Manager"
+  //   }
+  // ];
 
-  // use state for submit button
-  const [inpitValue, submitInputValue] = useState<string>();
+  // This state variable will keep the value of inputs while we are typing
+  const [singleEmployee, setSingleEmployee] = useState<IEmployeeItem>();
+
+  // This state variable will keep the list items.
+  // After we clicked submit, we will push the value of
+  // singleEmployee state to this state and then we will
+  // empty the singleEmployee one
+  const [employees, setEmployees] = useState<IEmployeeItem[]>([]);
 
   return (
     <div className="App">
       <h1>Add rows in to the array</h1>
       <h2>Start editing to see some magic happen!</h2>
 
-      {/* // show form with 3 empty lines and a button
-    // use onChange */}
-      <div>
-        <form>
-          <label>First name:</label>
-          <input type="text" value={th} onChange={}></input>
-          <br />
-          <label>Lirst name:</label>
-          <input></input>
-          <br />
-          <label>Role:</label>
-          <input></input>
-          <br />
-        </form>
-        <button
-          onClick={(event) => {
-            submitInputValue(event.target.value);
+      <div className="row">
+        <label className="label">First name:</label>
+        <input
+          className="input"
+          value={singleEmployee?.firstName}
+          onChange={(event) => {
+            setSingleEmployee({
+              ...singleEmployee,
+              firstName: event.target.value
+            });
           }}
-        >
-          Submit
-        </button>
+        />
       </div>
+      <div className="row">
+        <label className="label">Last name:</label>
+        <input
+          className="input"
+          value={singleEmployee?.lastName}
+          onChange={(event) => {
+            setSingleEmployee({
+              ...singleEmployee,
+              lastName: event.target.value
+            });
+          }}
+        />
+      </div>
+      <div className="row">
+        <label className="label">Role:</label>
+        <input
+          className="input"
+          value={singleEmployee?.role}
+          onChange={(event) => {
+            setSingleEmployee({
+              ...singleEmployee,
+              role: event.target.value
+            });
+          }}
+        />
+      </div>
+
+      <button
+        onClick={() => {
+          const _currentValues = employees.slice();
+          _currentValues.push(singleEmployee);
+          setEmployees(_currentValues);
+          setSingleEmployee({ firstName: "", lastName: "", role: "" });
+        }}
+      >
+        Submit
+      </button>
+
+      <hr />
+
       {/* // Map data to show list on a screen */}
       {employees.map((employee) => {
         return <EmployeeItem {...employee} />;
       })}
-      <div></div>
     </div>
   );
 };

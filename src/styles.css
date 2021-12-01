@@ -2,3 +2,18 @@
   font-family: sans-serif;
   text-align: center;
 }
+
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 6px;
+}
+
+.input {
+  margin-left: 12px;
+}
+
+.label {
+  width: 96px;
+}
