@@ -79,9 +79,12 @@ const App: React.FC<IApp> = () => {
 
       <button
         onClick={() => {
+          //create a copy of object
           const _currentValues = employees.slice();
           _currentValues.push(singleEmployee);
+
           setEmployees(_currentValues);
+          console.log(employees);
           setSingleEmployee({ firstName: "", lastName: "", role: "" });
         }}
       >
