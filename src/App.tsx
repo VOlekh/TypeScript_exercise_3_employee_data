@@ -2,6 +2,9 @@ import "./styles.css";
 import React, { useState } from "react";
 import { IEmployeeItem } from "./EmployeeItem";
 import EmployeeItem from "./EmployeeItem";
+import UpdateStateSample from "./UpdateStateSample";
+import UpdateStateSample2 from "./UpdateStateSample2";
+import UpdateStateSample3 from "./UpdateStateSample3";
 
 interface IApp {}
 
@@ -91,6 +94,10 @@ const App: React.FC<IApp> = () => {
       {employees.map((employee) => {
         return <EmployeeItem {...employee} />;
       })}
+
+      <UpdateStateSample />
+      <UpdateStateSample2 />
+      <UpdateStateSample3 />
     </div>
   );
 };
