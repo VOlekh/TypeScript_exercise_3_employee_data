@@ -5,27 +5,34 @@ export interface IUpdateStateSample3 {
   sentence: string;
 }
 
-function reverseSentence(sentence) {
-  let reversed;
-  let newArray = [];
-  reversed = sentence.split(" ");
-  for (var i = 0; i < reversed.length; i++) {
-    newArray.push(reversed[i].split("").reverse().join(""));
-  }
-  return newArray.join(" ");
+function reverseSentenceFunc(sentence: string) {
+  //let reversed;
+  //let newArray = [];
+  //reversed = sentence.split(" ");
+  //for (var i = 0; i < reversed.length; i++) {
+  //  newArray.push(reversed[i].split("").reverse().join(""));
+  //}
+  //return newArray.join(" ");
+
+  return sentence.split("").reverse().join("");
 }
 
+const SENTENCE = "Welcome on board";
+
 const UpdateStateSample3: React.FC<IUpdateStateSample3> = () => {
-  const [sentence, reverseSentence] = useState({
-    sentence: "Welcome on board"
+  const [stateObject, setStateObject] = useState({
+    sentence: SENTENCE
   });
-  let newSentence = "";
+
   return (
     <div className="box">
-      <div>{`This is sentence reverse with function: ${sentence} ${newSentence}`}</div>
+      <div>{`This is sentence reverse with function: ${SENTENCE} ${stateObject.sentence}`}</div>
       <button
         onClick={() => {
-          newSentence = reverseSentence(sentence);
+          setStateObject({
+            ...stateObject,
+            sentence: reverseSentenceFunc(stateObject.sentence)
+          });
         }}
       >
         Change sentence
